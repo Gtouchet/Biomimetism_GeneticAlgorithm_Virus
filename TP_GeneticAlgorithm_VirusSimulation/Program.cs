@@ -1,6 +1,5 @@
 ﻿using TP_GeneticAlgorithm_VirusSimulation.Simulation;
 using TP_GeneticAlgorithm_VirusSimulation.Simulation.Reproduction;
-using TP_GeneticAlgorithm_VirusSimulation.Utilitaries;
 
 namespace TP_GeneticAlgorithm_VirusSimulation
 {
@@ -12,9 +11,9 @@ namespace TP_GeneticAlgorithm_VirusSimulation
             {
                 StartingHumanCount = 100,
                 MaximumHumansCount = 10000,
-                WeeksBeforeDyingWhenInfected = 3,
+                YearsBeforeDyingWhenInfected = 3,
                 ReproductionType = new RandomReproduction(),
-            }, new ConsoleHelper());
+            });
         }
     }
 }

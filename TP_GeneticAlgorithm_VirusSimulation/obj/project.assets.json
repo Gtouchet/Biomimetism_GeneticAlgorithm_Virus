@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Guillaume\\.nuget\\packages\\": {}
+    "C:\\Users\\33677\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\RepoGit\\Biomimetism_GeneticAlgorithm_Virus\\TP_GeneticAlgorithm_VirusSimulation\\TP_GeneticAlgorithm_VirusSimulation.csproj",
+      "projectUniqueName": "C:\\Users\\33677\\Documents\\GitRepo\\Biomimetism_GeneticAlgorithm_Virus\\TP_GeneticAlgorithm_VirusSimulation\\TP_GeneticAlgorithm_VirusSimulation.csproj",
       "projectName": "TP_GeneticAlgorithm_VirusSimulation",
-      "projectPath": "E:\\RepoGit\\Biomimetism_GeneticAlgorithm_Virus\\TP_GeneticAlgorithm_VirusSimulation\\TP_GeneticAlgorithm_VirusSimulation.csproj",
-      "packagesPath": "C:\\Users\\Guillaume\\.nuget\\packages\\",
-      "outputPath": "E:\\RepoGit\\Biomimetism_GeneticAlgorithm_Virus\\TP_GeneticAlgorithm_VirusSimulation\\obj\\",
+      "projectPath": "C:\\Users\\33677\\Documents\\GitRepo\\Biomimetism_GeneticAlgorithm_Virus\\TP_GeneticAlgorithm_VirusSimulation\\TP_GeneticAlgorithm_VirusSimulation.csproj",
+      "packagesPath": "C:\\Users\\33677\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\33677\\Documents\\GitRepo\\Biomimetism_GeneticAlgorithm_Virus\\TP_GeneticAlgorithm_VirusSimulation\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Guillaume\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\33677\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,8 +28,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.telerik.com/nuget": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -61,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

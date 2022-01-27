@@ -1,38 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TP_GeneticAlgorithm_VirusSimulation.Utilitaries;
 
 namespace TP_GeneticAlgorithm_VirusSimulation.Simulation
 {
     public class World
     {
         private WorldConfiguration Configuration;
-        private ConsoleHelper Console;
 
         private Virus Virus;
         private List<Human> Humans;
 
-        private int WeekCount;
-        private int InfectedThisWeek;
-        private int DeadThisWeek;
-        private int BirthThisWeek;
+        private int YearCount;
+        private int AliveCountBeforeYear;
+        private int DeathThisYear;
+        private int BirthThisYear;
+        private int InfectionThisYear;
 
-        private World(WorldConfiguration configuration, ConsoleHelper console)
+        private World(WorldConfiguration configuration)
         {
             this.Configuration = configuration;
-            this.Console = console;
 
             this.Virus = new Virus();
             this.Humans = this.PopulateWorld().ToList();
-            this.WeekCount = 0;
+            this.YearCount = 0;
 
             this.RunSimulation();
         }
 
-        public static World Of(WorldConfiguration configuration, ConsoleHelper console)
+        public static World Of(WorldConfiguration configuration)
         {
-            return new World(configuration, console);
+            return new World(configuration);
         }
 
         private IEnumerable<Human> PopulateWorld()
@@ -45,20 +43,27 @@ namespace TP_GeneticAlgorithm_VirusSimulation.Simulation
 
         private void RunSimulation()
         {
-            while (Enumerable.Range(0, this.Configuration.MaximumHumansCount).Contains(this.Humans.Count))
+            Console.WriteLine(this.Configuration);
+            Console.ReadKey();
+            Console.Clear();
+
+            while (Enumerable.Range(1, this.Configuration.MaximumHumansCount).Contains(this.Humans.Count))
             {
                 this.InfectionStep();
                 this.ReproductionStep();
 
-                this.Display();
+                Console.WriteLine(this);
+                Console.ReadKey();
+                Console.Clear();
             }
         }
 
         private void InfectionStep()
         {
-            this.WeekCount += 1;
-            this.InfectedThisWeek = 0;
-            this.DeadThisWeek = 0;
+            this.YearCount += 1;
+            this.AliveCountBeforeYear = this.Humans.Count;
+            this.InfectionThisYear = 0;
+            this.DeathThisYear = 0;
 
             List<Human> deadHumans = new List<Human>();
             this.Humans.ForEach(human =>
@@ -68,17 +73,17 @@ namespace TP_GeneticAlgorithm_VirusSimulation.Simulation
                     if (this.TryToInfect(human))
                     {
                         human.Infect();
-                        this.InfectedThisWeek += 1;
+                        this.InfectionThisYear += 1;
                     }
                 }
                 else
                 {
                     human.AddWeekOfInfection();
 
-                    if (human.InfectedWeekCount.Equals(this.Configuration.WeeksBeforeDyingWhenInfected))
+                    if (human.InfectedWeekCount.Equals(this.Configuration.YearsBeforeDyingWhenInfected))
                     {
                         deadHumans.Add(human);
-                        this.DeadThisWeek += 1;
+                        this.DeathThisYear += 1;
                     }
                 }
             });
@@ -95,7 +100,7 @@ namespace TP_GeneticAlgorithm_VirusSimulation.Simulation
 
             this.Humans = this.Configuration.ReproductionType.Handle(this.Humans);
 
-            this.BirthThisWeek = this.Humans.Count - humanCountBeforeBirths;
+            this.BirthThisYear = this.Humans.Count - humanCountBeforeBirths;
         }
 
         private bool TryToInfect(Human human)
@@ -110,12 +115,20 @@ namespace TP_GeneticAlgorithm_VirusSimulation.Simulation
                 }
             }
 
-            return new Random().Next(9) > sameGeneticCodeCount;
+            return new Random().Next(9) > sameGeneticCodeCount / 2;
         }
 
-        private void Display()
+        override
+        public string ToString()
         {
-            this.Console.Display($"{this.WeekCount}\n");
+            return
+                $"Year {this.YearCount} :\n" +
+                $" - Alive humans at the beginning of the year : {this.AliveCountBeforeYear}\n" +
+                $" - Death : {this.DeathThisYear}\n" +
+                $" - Birth : {this.BirthThisYear}\n" +
+                $" - Infections : {this.InfectionThisYear}\n" +
+                $" - Alive humans at the end of the year : {this.Humans.Count}\n\n" +
+                $"Press any key to continue";
         }
     }
 }

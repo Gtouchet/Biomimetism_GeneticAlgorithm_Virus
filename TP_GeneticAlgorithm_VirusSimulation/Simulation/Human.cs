@@ -7,7 +7,6 @@ namespace TP_GeneticAlgorithm_VirusSimulation.Simulation
         public byte[] GeneticCode { get; private set; }
         public bool Infected { get; private set; }
         public int InfectedWeekCount { get; private set; }
-        public int GeneticScore; // TODO
 
         private Human()
         {
@@ -52,6 +51,17 @@ namespace TP_GeneticAlgorithm_VirusSimulation.Simulation
         public void AddWeekOfInfection()
         {
             this.InfectedWeekCount += 1;
+        }
+
+        override
+        public string ToString()
+        {
+            string code = "";
+            for (int i = 0; i < 8; i += 1)
+            {
+                code += this.GeneticCode[i];
+            }
+            return code;
         }
     }
 }
